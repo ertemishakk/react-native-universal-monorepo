@@ -20,6 +20,7 @@
   },
   "scripts": {
     "reset": "find . -type dir -name node_modules | xargs rm -rf && rm -rf yarn.lock",
+    "server": "npm start ---prefix server",
     "android:metro": "yarn workspace @my-app/mobile start",
     "android:start": "yarn workspace @my-app/mobile android",
     "android:studio": "yarn workspace @my-app/mobile studio",
@@ -38,12 +39,12 @@
     "macos:start": "yarn workspace @my-app/macos macos",
     "macos:xcode": "yarn workspace @my-app/macos xcode",
     "macos:pods": "yarn workspace @my-app/macos pods",
-    "web:start": "yarn workspace @my-app/web start",
+    "web:start": "concurrently \"yarn workspace @my-app/web start\" \"yarn server\"",
     "web:build": "yarn workspace @my-app/web build",
     "next:start": "yarn workspace @my-app/next dev",
     "next:build": "yarn workspace @my-app/next build",
     "next:serve": "yarn workspace @my-app/next start",
-    "electron:start": "yarn workspace @my-app/electron start",
+    "electron:start": "concurrently \"yarn workspace @my-app/electron start\" \"yarn server\"",
     "electron:package:mac": "yarn workspace @my-app/electron package:mac",
     "electron:package:win": "yarn workspace @my-app/electron package:win",
     "electron:package:linux": "yarn workspace @my-app/electron package:linux",
@@ -59,13 +60,25 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.51.0",
     "@typescript-eslint/parser": "^5.51.0",
+    "concurrently": "^7.6.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.6.0",
+    "eslint-config-react-app": "^7.0.1",
     "eslint-plugin-react-app": "^6.2.2",
     "eslint-plugin-react-native": "^4.0.0",
-    "eslint-config-react-app": "^7.0.1",
     "prettier": "^2.8.4",
     "typescript": "^4.9.5",
     "ultra-runner": "^3.10.5"
+  },
+  "dependencies": {
+    "@react-native-community/async-storage": "^1.12.1",
+    "@reduxjs/toolkit": "^1.9.2",
+    "@types/lodash": "^4.14.191",
+    "electron-devtools-installer": "^3.2.0",
+    "lodash": "^4.17.21",
+    "react-redux": "^8.0.5",
+    "redux": "^4.2.1",
+    "redux-persist": "^6.0.0",
+    "socket.io-client": "^4.6.0"
   }
 }

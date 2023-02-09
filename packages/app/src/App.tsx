@@ -1,77 +1,52 @@
-import React from "react";
-import {
-  Image,
-  ImageSourcePropType,
-  Platform,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
-import { AsyncStorageExample } from "./AsyncStorageExample";
-import { subplatform } from "./config";
-import LogoSrc from "./logo.png";
+import React, { useEffect, useState } from "react";
+import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import { store, persistor } from "./store";
 
-export function App(): JSX.Element {
-  const platformValue = subplatform
-    ? `${Platform.OS} (${subplatform})`
-    : Platform.OS;
-  // @ts-ignore
-  const isHermes = () => !!global.HermesInternal;
+import io from "socket.io-client";
+
+const socket = io("http://localhost:5100");
+
+export function App() {
+  const [mode, setMode] = useState<null | string>(null);
+  useEffect(() => {
+    socket.on("saleMode", (data) => {
+      setMode(data.mode);
+    });
+
+    return () => {
+      socket.off("saleMode");
+    };
+  }, []);
+
   return (
-    <SafeAreaView style={styles.root}>
-      {/* On React Native for Web builds coming from CRA, TypeScript
-          complains about the image type, so we cast it as a workaround  */}
-      <Image style={styles.logo} source={LogoSrc as ImageSourcePropType} />
-      <Text style={styles.text}>Hello from React Native!</Text>
-      <View style={styles.platformRow}>
-        <Text style={styles.text}>Platform: </Text>
-        <View style={styles.platformBackground}>
-          <Text style={styles.platformValue}>{platformValue}</Text>
-        </View>
-      </View>
-      <View style={styles.platformRow}>
-        <Text style={styles.text}>Hermes Engine: </Text>
-        <View style={styles.platformBackground}>
-          <Text style={styles.platformValue}>{isHermes()? "Yes": "No"}</Text>
-        </View>
-      </View>
-      <AsyncStorageExample/>
-    </SafeAreaView>
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <SafeAreaView style={styles.root}>
+          <View style={styles.container}>
+            <Text>Electron</Text>
+          </View>
+          <View style={styles.container}>
+            <Text>App</Text>
+          </View>
+        </SafeAreaView>
+      </PersistGate>
+    </Provider>
   );
 }
 
 const styles = StyleSheet.create({
   root: {
-    height: "100%",
-    alignItems: "center",
+    flex: 1,
+    borderWidth: 1,
+    borderColor: "red",
+  },
+  container: {
+    flex: 1,
+    borderColor: "blue",
+    borderWidth: 1,
     justifyContent: "center",
-    backgroundColor: "white",
-  },
-  logo: {
-    width: 120,
-    height: 120,
-    marginBottom: 20,
-  },
-  text: {
-    fontSize: 28,
-    fontWeight: "600",
-  },
-  platformRow: {
-    marginTop: 12,
-    flexDirection: "row",
     alignItems: "center",
   },
-  platformValue: {
-    fontSize: 28,
-    fontWeight: "500",
-  },
-  platformBackground: {
-    backgroundColor: "#ececec",
-    borderWidth: StyleSheet.hairlineWidth,
-    borderColor: "#d4d4d4",
-    paddingHorizontal: 6,
-    borderRadius: 6,
-    alignItems: "center",
-  }
 });

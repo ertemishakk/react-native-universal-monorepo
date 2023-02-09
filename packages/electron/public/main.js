@@ -2,16 +2,23 @@
 const { app, BrowserWindow, protocol } = require("electron");
 const path = require("path");
 const url = require("url");
+const {
+  default: installExtension,
+  REDUX_DEVTOOLS,
+  REACT_DEVELOPER_TOOLS,
+} = require("electron-devtools-installer");
+const isDev = process.env.NODE_ENV === "development";
 
 // Create the native browser window.
 function createWindow() {
   const mainWindow = new BrowserWindow({
-    width: 800,
+    width: 1200,
     height: 600,
     // Set the path of an additional "preload" script that can be used to
     // communicate between node-land and browser-land.
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
+      devTools: true,
     },
   });
 
@@ -42,7 +49,7 @@ function setupLocalFilesNormalizerProxy() {
       const url = request.url.substr(8);
       callback({ path: path.normalize(`${__dirname}/${url}`) });
     }
-   /* (error) => {
+    /* (error) => {
       if (error) console.error("Failed to register protocol");
     }*/
   );
@@ -62,6 +69,16 @@ app.whenReady().then(() => {
       createWindow();
     }
   });
+});
+
+app.on("ready", () => {
+  if (!app.isPackaged) {
+    [REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS].forEach((extension) => {
+      installExtension(extension)
+        .then((name) => console.log(`Added Extension: ${name}`))
+        .catch((err) => console.log("An error occurred: ", err));
+    });
+  }
 });
 
 // Quit when all windows are closed, except on macOS.
