@@ -9,7 +9,9 @@
       "esnext"
     ],
     "noFallthroughCasesInSwitch": true,
-    "module": "esnext"
+    "module": "commonjs",
+
+    "sourceMap": true
   },
   "include": [
     "../app/**/*",
