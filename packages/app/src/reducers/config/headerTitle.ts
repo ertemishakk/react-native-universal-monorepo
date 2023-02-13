@@ -1,17 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState: number = 1;
+const initialState = null as null | string;
 
 const slice = createSlice({
-  name: "testConfig",
+  name: "headerTitle",
   initialState,
   reducers: {
-    setConfig(state, action: PayloadAction<number>) {
+    setHeaderTitle: (state, action: PayloadAction<string | null>) => {
       return action.payload;
     },
   },
 });
 
-export const { setConfig } = slice.actions;
+export const { setHeaderTitle } = slice.actions;
 
 export default slice.reducer;

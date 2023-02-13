@@ -15,7 +15,8 @@
       "**/react-native-codegen",
       "**/react-native-dev-menu",
       "**/react-native-macos",
-      "**/react-native-windows"
+      "**/react-native-windows",
+      "**/react-native-web"
     ]
   },
   "scripts": {
