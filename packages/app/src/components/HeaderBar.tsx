@@ -23,5 +23,7 @@ const styles = StyleSheet.create({
     backgroundColor: "aqua",
     alignItems: "center",
     justifyContent: "center",
+    marginHorizontal: 20,
+    marginTop: 10,
   },
 });

@@ -1,14 +1,10 @@
 import React from "react";
-import { View, Text } from "react-native";
+import AdvertisingPane from "../panes/AdvertisingPane";
 
 export const IDLE_MODE = "IDLE_MODE";
 
 const Idle = () => {
-  return (
-    <View>
-      <Text>Idle</Text>
-    </View>
-  );
+  return <AdvertisingPane />;
 };
 
 export default Idle;

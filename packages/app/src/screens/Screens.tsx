@@ -1,6 +1,6 @@
 import React from "react";
-import Sale, { SALE_MODE } from "../screens/Sale";
-import Idle, { IDLE_MODE } from "../screens/Idle";
+import Sale, { SALE_MODE } from "./SaleScreen";
+import Idle, { IDLE_MODE } from "./IdleScreen";
 import { useAppSelector } from "../redux-app/hooks";
 
 interface ScreenType {

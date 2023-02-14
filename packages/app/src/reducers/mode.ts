@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IDLE_MODE } from "../screens/Idle";
-import { SALE_MODE } from "../screens/Sale";
+import { IDLE_MODE } from "../screens/IdleScreen";
+import { SALE_MODE } from "../screens/SaleScreen";
 
-const initialState = IDLE_MODE;
+const initialState = SALE_MODE;
 
 const slice = createSlice({
   name: "mode",
