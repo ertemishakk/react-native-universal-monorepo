@@ -5,6 +5,7 @@ import mode from "./mode";
 import member from "./member";
 import adsContainer from "./adsContainer";
 import giftcard from "./giftcard";
+import currentSale from "./currentSale";
 
 const PERSIST = {
   config,
@@ -16,6 +17,7 @@ const rootReducer: Reducer<PromoPlayer, AnyAction> = combineReducers({
   member,
   adsContainer,
   giftcard,
+  currentSale,
 });
 
 export const PERSIST_KEYS = lodash.keys(PERSIST);

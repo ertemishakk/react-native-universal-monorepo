@@ -2,13 +2,13 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IDLE_MODE } from "../screens/IdleScreen";
 import { setMode } from "./mode";
 
-const initialState = null as GiftCard | null;
+const initialState = null as CurrentSale | null;
 
 const slice = createSlice({
-  name: "giftcard",
+  name: "currentSale",
   initialState,
   reducers: {
-    setGiftcard: (state, action: PayloadAction<GiftCard | null>) => {
+    setCurrentSale: (state, action: PayloadAction<CurrentSale | null>) => {
       return action.payload;
     },
   },
@@ -18,6 +18,6 @@ const slice = createSlice({
     }),
 });
 
-export const { setGiftcard } = slice.actions;
+export const { setCurrentSale } = slice.actions;
 
 export default slice.reducer;

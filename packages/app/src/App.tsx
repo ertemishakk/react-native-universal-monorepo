@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, StyleSheet, View } from "react-native";
+import { Dimensions, SafeAreaView, StyleSheet } from "react-native";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./store";
-
 import io from "socket.io-client";
 import Screens from "./screens/Screens";
+
+const width = Dimensions.get("window").width;
 
 const socket = io("http://localhost:5100");
 
