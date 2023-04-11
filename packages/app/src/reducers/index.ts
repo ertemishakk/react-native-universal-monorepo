@@ -1,23 +1,15 @@
 import { combineReducers, AnyAction, Reducer } from "redux";
 import lodash from "lodash";
-import config from "./config";
-import mode from "./mode";
-import member from "./member";
-import adsContainer from "./adsContainer";
-import giftcard from "./giftcard";
-import currentSale from "./currentSale";
+import posts from "./posts";
 
 const PERSIST = {
-  config,
+
 };
 
-const rootReducer: Reducer<PromoPlayer, AnyAction> = combineReducers({
+const rootReducer: Reducer<FrontEndState, AnyAction> = combineReducers({
+  posts,
   ...PERSIST,
-  mode,
-  member,
-  adsContainer,
-  giftcard,
-  currentSale,
+
 });
 
 export const PERSIST_KEYS = lodash.keys(PERSIST);

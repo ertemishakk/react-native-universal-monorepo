@@ -1,38 +1,24 @@
-import React, { useEffect, useState } from "react";
-import { Dimensions, SafeAreaView, StyleSheet } from "react-native";
+import React from "react";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./store";
-import io from "socket.io-client";
-import Screens from "./screens/Screens";
-
-const width = Dimensions.get("window").width;
-
-const socket = io("http://localhost:5100");
+import Navigation from "./navigation/Navigation";
+import "react-native-gesture-handler";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import IconInjector from "./components/IconInjector";
+import NavigationContainer from "./navigation/NavigationContainer";
 
 export function App() {
-  useEffect(() => {
-    socket.on("saleMode", (data) => {});
-
-    return () => {
-      socket.off("saleMode");
-    };
-  }, []);
-
-  return (
-    <Provider store={store}>
-      <PersistGate persistor={persistor}>
-        <SafeAreaView style={styles.root}>
-          <Screens />
-        </SafeAreaView>
-      </PersistGate>
-    </Provider>
-  );
+   return (
+      <SafeAreaProvider>
+         <Provider store={store}>
+            <PersistGate persistor={persistor}>
+               <NavigationContainer>
+                  <IconInjector />
+                  <Navigation />
+               </NavigationContainer>
+            </PersistGate>
+         </Provider>
+      </SafeAreaProvider>
+   );
 }
-
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    backgroundColor: "red",
-  },
-});

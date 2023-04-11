@@ -40,7 +40,7 @@
     "macos:start": "yarn workspace @my-app/macos macos",
     "macos:xcode": "yarn workspace @my-app/macos xcode",
     "macos:pods": "yarn workspace @my-app/macos pods",
-    "web:start": "concurrently \"yarn workspace @my-app/web start\" \"yarn server\"",
+    "web:start": "yarn workspace @my-app/web start",
     "web:build": "yarn workspace @my-app/web build",
     "next:start": "yarn workspace @my-app/next dev",
     "next:build": "yarn workspace @my-app/next build",
@@ -72,14 +72,28 @@
     "ultra-runner": "^3.10.5"
   },
   "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/preset-react": "^7.18.6",
     "@react-native-community/async-storage": "^1.12.1",
+    "@react-native-community/masked-view": "^0.1.11",
+    "@react-navigation/bottom-tabs": "^6.5.7",
+    "@react-navigation/native": "^6.1.6",
+    "@react-navigation/native-stack": "^6.9.12",
+    "@react-navigation/stack": "^6.3.16",
     "@reduxjs/toolkit": "^1.9.2",
+    "@rneui/base": "^4.0.0-rc.7",
+    "@rneui/themed": "^4.0.0-rc.7",
     "@types/lodash": "^4.14.191",
     "electron-devtools-installer": "^3.2.0",
     "lodash": "^4.17.21",
+    "query-string": "^8.1.0",
+    "react-native-gesture-handler": "^2.9.0",
+    "react-native-reanimated": "^3.0.2",
+    "react-native-safe-area-context": "^4.5.1",
+    "react-native-screens": "3.18.0",
+    "react-native-vector-icons": "^9.2.0",
     "react-redux": "^8.0.5",
     "redux": "^4.2.1",
-    "redux-persist": "^6.0.0",
-    "socket.io-client": "^4.6.0"
+    "redux-persist": "^6.0.0"
   }
 }

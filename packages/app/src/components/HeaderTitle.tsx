@@ -1,19 +1,22 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
 const HeaderTitle = () => {
-  return (
-    <View>
-      <Text style={styles.title}>Welcome To Pizza Club</Text>
-    </View>
-  );
+   return (
+      <View>
+         <Text style={styles.text}>Classified Ads for Turkish Australians</Text>
+      </View>
+   );
 };
 
 export default HeaderTitle;
 
 const styles = StyleSheet.create({
-  title: {
-    fontSize: 30,
-    fontWeight: "bold",
-  },
+   text: {
+      fontSize: 30,
+      color: "white",
+      fontWeight: "600",
+      paddingHorizontal: 10,
+      paddingVertical: 20,
+   },
 });

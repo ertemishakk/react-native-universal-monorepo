@@ -1,0 +1,3 @@
+interface FrontEndState {
+    posts:Post[] 
+}
